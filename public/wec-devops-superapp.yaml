@@ -1,0 +1,1193 @@
+swagger: '2.0'
+info:
+  title: CMP Devops API
+  description: The API definition for the Devops Console of Cloud Manage Platform.
+  version: "1.0.0"
+# the domain of the service
+host: res.wisedu.com:8000
+# array of all schemes that your API supports
+schemes:
+  - http
+# will be prefixed to all paths
+basePath: /wec-devops-superapp
+
+
+paths:
+  /school/querySchool:
+    post:
+      summary: "查询已配置的学校"
+      description: "根据租户名称、类型查询学校列表"
+      operationId: "querySchool"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      tags:
+        - ""
+      parameters:
+        - name: "schoolQueryRequest"
+          in: "body"
+          required: true
+          description: "请求"
+          schema:
+            $ref: "#/definitions/schoolQueryRequest"
+      responses:
+        200:
+          description: "请求成功"
+          schema:
+            $ref: "#/definitions/schoolQueryResponse"
+
+  /school/initAllSchool:
+    get:
+      summary: "初始化所有学校"
+      description: "根据dubbo接口获取所有学校，初始化下拉学校列表"
+      operationId: "initAllSchool"
+      produces:
+        - "application/json"
+      tags:
+        - ""
+      parameters:
+        - name: "searchKey"
+          in: "query"
+          required: false
+          description: ""
+          type: "string"
+      responses:
+        200:
+          description: "请求成功"
+          schema:
+            $ref: "#/definitions/initAllSchoolResponse"
+
+  /school/saveSchool:
+    post:
+      summary: "保存学校配置信息"
+      description: "保存学校配置信息，包括新增和修改"
+      operationId: "saveSchool"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      tags:
+        - ""
+      parameters:
+        - name: "schoolSaveRequest"
+          in: "body"
+          required: true
+          description: "请求"
+          schema:
+            $ref: "#/definitions/schoolSaveRequest"
+      responses:
+        200:
+          description: "请求成功"
+          schema:
+            $ref: "#/definitions/basicPushResponse"
+
+  /school/selectSchool:
+    get:
+      summary: "查询学校基础信息"
+      description: "查询学校基础信息"
+      operationId: "selectSchool"
+      produces:
+        - "application/json"
+      tags:
+        - ""
+      parameters:
+        - name: "schoolCode"
+          in: "query"
+          required: false
+          description: ""
+          type: "string"
+      responses:
+        200:
+          description: "请求成功"
+          schema:
+            $ref: "#/definitions/schoolSelectResponse"
+
+  /pushApp/readPrivateAppForPush:
+    post:
+      summary: "读取私有云可推送的应用"
+      description: "读取私有云可推送的应用"
+      operationId: "readPrivateAppForPush"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      tags:
+        - ""
+      parameters:
+        - name: "readPrivateAppRequest"
+          in: "body"
+          required: true
+          description: "请求"
+          schema:
+            $ref: "#/definitions/readPrivateAppRequest"
+      responses:
+        200:
+          description: "请求成功"
+          schema:
+            $ref: "#/definitions/readPrivateAppResponse"
+
+  /pushApp/initPrivateCategory:
+    get:
+      summary: "初始化私有云应用类别列表"
+      description: "初始化私有云应用类别列表"
+      operationId: "initPrivateCategory"
+      produces:
+        - "application/json"
+      tags:
+        - ""
+      responses:
+        200:
+          description: "请求成功"
+          schema:
+            $ref: "#/definitions/privateCategoryResponse"
+
+  /pushApp/readPublicAppForPush:
+    post:
+      summary: "读取公有云可推送的应用"
+      description: "读取公有云可推送的应用"
+      operationId: "readPublicAppForPush"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      tags:
+        - ""
+      parameters:
+        - name: "readPublicAppRequest"
+          in: "body"
+          required: true
+          description: "请求"
+          schema:
+            $ref: "#/definitions/readPublicAppRequest"
+      responses:
+        200:
+          description: "请求成功"
+          schema:
+            $ref: "#/definitions/readPublicAppResponse"
+
+  /pushApp/pushSchoolApp:
+    post:
+      summary: "确认出库到学校"
+      description: "确认出库到学校"
+      operationId: "pushSchoolApp"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      tags:
+        - ""
+      parameters:
+        - name: "pushSchoolAppRequest"
+          in: "body"
+          required: true
+          description: "请求"
+          schema:
+            $ref: "#/definitions/pushSchoolAppRequest"
+      responses:
+        200:
+          description: "请求成功"
+          schema:
+            $ref: "#/definitions/pushSchoolResponse"
+
+  /school/queryPrivateApp:
+    post:
+      summary: "查询已接入的私有云应用"
+      description: "查询已接入的私有云应用"
+      operationId: "queryPrivateApp"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      tags:
+        - ""
+      parameters:
+        - name: "queryPrivateAppRequest"
+          in: "body"
+          required: true
+          description: "请求"
+          schema:
+            $ref: "#/definitions/queryPrivateAppRequest"
+      responses:
+        200:
+          description: "请求成功"
+          schema:
+            $ref: "#/definitions/queryPrivateAppResponse"
+
+  /school/queryPublicApp:
+    post:
+      summary: "查询已接入的公有云应用"
+      description: "查询已接入的公有云应用"
+      operationId: "queryPublicApp"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      tags:
+        - ""
+      parameters:
+        - name: "queryPublicAppRequest"
+          in: "body"
+          required: true
+          description: "请求"
+          schema:
+            $ref: "#/definitions/queryPublicAppRequest"
+      responses:
+        200:
+          description: "请求成功"
+          schema:
+            $ref: "#/definitions/queryPublicAppResponse"
+
+  /pushApp/checkAppApi:
+    post:
+      summary: "检查私有云应用所需的api是否存在"
+      description: "检查私有云应用所需的api是否存在"
+      operationId: "checkAppApi"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      tags:
+        - ""
+      parameters:
+        - name: "checkAppApiRequest"
+          in: "body"
+          required: true
+          description: "请求"
+          schema:
+            $ref: "#/definitions/checkAppApiRequest"
+      responses:
+        200:
+          description: "请求成功"
+          schema:
+            $ref: "#/definitions/checkAppApiResponse"
+
+  /restful/getSchoolPushedApps:
+    post:
+      summary: "查询学校已推送的应用信息"
+      description: "查询学校已推送的应用信息"
+      operationId: "getSchoolPushedApps"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      tags:
+        - ""
+      parameters:
+        - name: "schoolPushedAppRequest"
+          in: "body"
+          required: true
+          description: "请求"
+          schema:
+            $ref: "#/definitions/baseBean"
+      responses:
+        200:
+          description: "请求成功"
+          schema:
+            $ref: "#/definitions/baseBeanResponse"
+
+  /restful/setAppPurchaseStatus:
+    post:
+      summary: "设置学校应用接入状态"
+      description: "设置学校应用接入状态"
+      operationId: "setAppPurchaseStatus"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      tags:
+        - ""
+      parameters:
+        - name: "setAppPurchaseRequest"
+          in: "body"
+          required: true
+          description: "请求"
+          schema:
+            $ref: "#/definitions/baseBean"
+      responses:
+        200:
+          description: "请求成功"
+          schema:
+            $ref: "#/definitions/baseBeanResponse"
+
+definitions:
+
+  schoolQueryRequest:
+    type: "object"
+    properties:
+      searchKey:
+        type: "string"
+        description: "搜索关键字"
+      schoolType:
+        type: "integer"
+        description: "学校类型。0：全部；1：新私有云平台；2：校端云平台"
+      pageNumber:
+        type: "integer"
+        description: "分页页码"
+      pageSize:
+        type: "integer"
+        description: "分页大小"
+
+  schoolQueryResponse:
+    type: "object"
+    properties:
+      code:
+        type: "string"
+        description: "操作状态码（0：成功，999：失败）"
+      message:
+        type: "string"
+        description: "请求成功相关信息"
+      datas:
+        type: "object"
+        items:
+          $ref: "#/definitions/schoolBeanDatas"
+
+  schoolBeanDatas:
+    type: "object"
+    properties:
+      totalSize:
+        type: "integer"
+        description: "记录总数"
+      pageSize:
+        type: "integer"
+        description: "分页大小"
+      pageNumber:
+        type: "integer"
+        description: "分页页码"
+      rows:
+        type: "array"
+        items:
+          $ref: '#/definitions/schoolBean'
+
+  schoolBean:
+    type: "object"
+    properties:
+      schoolCode:
+        type: "string"
+        description: "学校代码"
+      schoolName:
+        type: "string"
+        description: "学校名称"
+      schoolType:
+        type: "integer"
+        description: "学校类型。1：新私有云平台；2：校端云平台"
+      publishTime:
+        type: "string"
+        description: "发布时间,所有时间格式为：yyyy/MM/dd HH:mm:ss"
+      purchaseCount:
+        type: "integer"
+        description: "接入应用数量"
+
+  initAllSchoolResponse:
+    type: "object"
+    properties:
+      code:
+        type: "string"
+        description: "操作状态码（0：成功，999：失败）"
+      message:
+        type: "string"
+        description: "请求成功相关信息"
+      datas:
+        type: "array"
+        items:
+          $ref: "#/definitions/baseSchoolBean"
+
+  baseSchoolBean:
+    type: "object"
+    properties:
+      schoolCode:
+        type: "string"
+        description: "学校代码"
+      schoolName:
+        type: "string"
+        description: "学校名称"
+
+  schoolSaveRequest:
+    type: "object"
+    properties:
+      schoolCode:
+        type: "string"
+        description: "学校代码"
+      schoolType:
+        type: "integer"
+        description: "学校类型。1：新私有云平台；2：校端云平台"
+      schoolName:
+        type: "string"
+        description: "学校名称"
+
+  basicPushResponse:
+    type: "object"
+    properties:
+      code:
+        type: "string"
+        description: "操作状态码（0：成功，999：失败）"
+      message:
+        type: "string"
+        description: "请求成功相关信息"
+
+  schoolSelectResponse:
+    type: "object"
+    properties:
+      code:
+        type: "string"
+        description: "操作状态码（0：成功，999：失败）"
+      message:
+        type: "string"
+        description: "请求成功相关信息"
+      data:
+        type: "object"
+        items:
+          $ref: '#/definitions/schoolBean'
+
+  readPrivateAppRequest:
+    type: "object"
+    properties:
+      searchKey:
+        type: "string"
+        description: "搜索关键字"
+      categoryId:
+        type: "string"
+        description: "应用分类id"
+      schoolCode:
+        type: "string"
+        description: "学校代码"
+      pageNumber:
+        type: "integer"
+        description: "分页页码"
+      pageSize:
+        type: "integer"
+        description: "分页大小"
+
+  readPrivateAppResponse:
+    type: "object"
+    properties:
+      code:
+        type: "string"
+        description: "操作状态码（0：成功，999：失败）"
+      message:
+        type: "string"
+        description: "请求成功相关信息"
+      datas:
+        type: "object"
+        items:
+          $ref: "#/definitions/privateAppDatas"
+
+  privateAppDatas:
+    type: "object"
+    properties:
+      totalSize:
+        type: "integer"
+        description: "记录总数"
+      pageSize:
+        type: "integer"
+        description: "分页大小"
+      pageNumber:
+        type: "integer"
+        description: "分页页码"
+      rows:
+        type: "array"
+        items:
+          $ref: '#/definitions/privateApp'
+
+  privateApp:
+    type: "object"
+    properties:
+      appId:
+        type: "string"
+        description: "应用id"
+      appName:
+        type: "string"
+        description: "应用名称"
+      isWebApp:
+        type: "integer"
+        description: "是否pc应用。0:否；1：是"
+      isMobileApp:
+        type: "integer"
+        description: "是否移动应用。0:否；1：是"
+      hasPurchased:
+        type: "integer"
+        description: "是否已出库。0:否；1：是"
+      categoryId:
+        type: "string"
+        description: "应用分类id"
+      versions:
+        type: "array"
+        items:
+          type: "string"
+
+  privateCategoryResponse:
+    type: "object"
+    properties:
+      code:
+        type: "string"
+        description: "操作状态码（0：成功，999：失败）"
+      message:
+        type: "string"
+        description: "请求成功相关信息"
+      datas:
+        type: "array"
+        items:
+          $ref: "#/definitions/categoryBean"
+
+  categoryBean:
+    type: "object"
+    properties:
+      categoryId:
+        type: "string"
+        description: "应用分类id"
+      categoryName:
+        type: "string"
+        description: "应用分类名称"
+
+  readPublicAppRequest:
+    type: "object"
+    properties:
+      searchKey:
+        type: "string"
+        description: "搜索关键字"
+      schoolCode:
+        type: "string"
+        description: "学校代码"
+      pageNumber:
+        type: "integer"
+        description: "分页页码"
+      pageSize:
+        type: "integer"
+        description: "分页大小"
+
+  readPublicAppResponse:
+    type: "object"
+    properties:
+      code:
+        type: "string"
+        description: "操作状态码（0：成功，999：失败）"
+      message:
+        type: "string"
+        description: "请求成功相关信息"
+      datas:
+        type: "object"
+        items:
+          $ref: "#/definitions/publicAppDatas"
+
+  publicAppDatas:
+    type: "object"
+    properties:
+      totalSize:
+        type: "integer"
+        description: "记录总数"
+      pageSize:
+        type: "integer"
+        description: "分页大小"
+      pageNumber:
+        type: "integer"
+        description: "分页页码"
+      rows:
+        type: "array"
+        items:
+          $ref: '#/definitions/publicApp'
+
+  publicApp:
+    type: "object"
+    properties:
+      appId:
+        type: "string"
+        description: "应用id"
+      appName:
+        type: "string"
+        description: "应用名称"
+      hasPurchased:
+        type: "integer"
+        description: "是否已出库。0:否；1：是"
+      serviceList:
+        type: "array"
+        items:
+          $ref: '#/definitions/appService'
+
+  appService:
+    type: "object"
+    properties:
+      serviceId:
+        type: "string"
+        description: "服务id"
+      serviceName:
+        type: "string"
+        description: "服务名称"
+      isWebService:
+        type: "integer"
+        description: "是否pc服务。0:否；1：是"
+      isMobileService:
+        type: "integer"
+        description: "是否移动服务。0:否；1：是"
+      hasPurchased:
+        type: "integer"
+        description: "是否已出库。0:否；1：是"
+
+  pushSchoolAppRequest:
+    type: "object"
+    properties:
+      schoolCode:
+        type: "string"
+        description: "学校代码"
+      privateAppList:
+        type: "array"
+        items:
+          $ref: '#/definitions/privateAppPurchase'
+      publicAppList:
+        type: "array"
+        items:
+          $ref: '#/definitions/publicAppPurchase'
+
+  privateAppPurchase:
+    type: "object"
+    properties:
+      appId:
+        type: "string"
+        description: "应用id"
+      appName:
+        type: "string"
+        description: "应用名称"
+      isPurchaseWeb:
+        type: "integer"
+        description: "是否接入pc服务。0:否；1：是"
+      isPurchaseMobile:
+        type: "integer"
+        description: "是否接入移动服务。0:否；1：是"
+      purchaseVersion:
+        type: "string"
+        description: "推送应用版本"
+      categoryId:
+        type: "string"
+        description: "应用分类id"
+
+  publicAppPurchase:
+    type: "object"
+    properties:
+      appId:
+        type: "string"
+        description: "应用id"
+      appName:
+        type: "string"
+        description: "应用名称"
+      serviceList:
+        type: "array"
+        items:
+          $ref: '#/definitions/appService'
+
+  pushSchoolResponse:
+    type: "object"
+    properties:
+      code:
+        type: "string"
+        description: "操作状态码（0：成功，999：失败）"
+      message:
+        type: "string"
+        description: "请求成功相关信息"
+      datas:
+        type: "object"
+        items:
+          $ref: "#/definitions/pushResult"
+
+  pushResult:
+    type: "object"
+    properties:
+      count:
+        type: "integer"
+        description: "成功出库条数"
+
+  queryPrivateAppRequest:
+    type: "object"
+    properties:
+      schoolCode:
+        type: "string"
+        description: "学校id"
+      categoryId:
+        type: "string"
+        description: "应用分类id"
+      searchKey:
+        type: "string"
+        description: "搜索关键字，可模糊查询应用id和名称"
+      isPurchaseWeb:
+        type: "integer"
+        description: "是否出库pc服务。0:否；1：是"
+      isPurchaseMobile:
+        type: "integer"
+        description: "是否出库移动服务。0:否；1：是"
+      purchaseStatus:
+        type: "integer"
+        description: "接入状态(0：未接入；1：已接入；2：全部)"
+      pageNumber:
+        type: "integer"
+        description: "分页页码"
+      pageSize:
+        type: "integer"
+        description: "分页大小"
+
+  queryPrivateAppResponse:
+    type: "object"
+    properties:
+      code:
+        type: "string"
+        description: "操作状态码（0：成功，999：失败）"
+      message:
+        type: "string"
+        description: "请求成功相关信息"
+      datas:
+        type: "object"
+        items:
+          $ref: "#/definitions/queryPrivateAppDatas"
+
+  queryPrivateAppDatas:
+    type: "object"
+    properties:
+      totalSize:
+        type: "integer"
+        description: "记录总数"
+      pageSize:
+        type: "integer"
+        description: "分页大小"
+      pageNumber:
+        type: "integer"
+        description: "分页页码"
+      rows:
+        type: "array"
+        items:
+          $ref: '#/definitions/pushPrivateAppInfo'
+
+  pushPrivateAppInfo:
+    type: "object"
+    properties:
+      schoolCode:
+        type: "string"
+        description: "学校代码"
+      schoolToken:
+        type: "string"
+        description: "学校token"
+      appId:
+        type: "string"
+        description: "应用id"
+      appName:
+        type: "string"
+        description: "应用名称"
+      categoryId:
+        type: "string"
+        description: "应用分类id"
+      purchaseVersion:
+        type: "string"
+        description: "推送应用版本"
+      isPurchaseWeb:
+        type: "integer"
+        description: "是否出库pc服务。0:否；1：是"
+      isPurchaseMobile:
+        type: "integer"
+        description: "是否出库移动服务。0:否；1：是"
+      purchaseStatus:
+        type: "integer"
+        description: "接入状态(0：未接入；1：已接入)"
+      purchaseTime:
+        type: "string"
+        description: "接入时间，未接入为空"
+
+  queryPublicAppRequest:
+    type: "object"
+    properties:
+      schoolCode:
+        type: "string"
+        description: "学校id"
+      searchKey:
+        type: "string"
+        description: "搜索关键字，可模糊查询应用id和名称"
+      pageNumber:
+        type: "integer"
+        description: "分页页码"
+      pageSize:
+        type: "integer"
+        description: "分页大小"
+
+  queryPublicAppResponse:
+    type: "object"
+    properties:
+      code:
+        type: "string"
+        description: "操作状态码（0：成功，999：失败）"
+      message:
+        type: "string"
+        description: "请求成功相关信息"
+      datas:
+        type: "object"
+        items:
+          $ref: "#/definitions/queryPublicAppDatas"
+
+  queryPublicAppDatas:
+    type: "object"
+    properties:
+      totalSize:
+        type: "integer"
+        description: "记录总数"
+      pageSize:
+        type: "integer"
+        description: "分页大小"
+      pageNumber:
+        type: "integer"
+        description: "分页页码"
+      rows:
+        type: "array"
+        items:
+          $ref: '#/definitions/pushPublicApp'
+
+  pushPublicApp:
+    type: "object"
+    properties:
+      appId:
+        type: "string"
+        description: "应用id"
+      appName:
+        type: "string"
+        description: "应用名称"
+      venderName:
+        type: "string"
+        description: "开发厂商"
+      purchaseStatus:
+        type: "integer"
+        description: "接入状态(0：未接入；1：已接入)"
+      purchaseTime:
+        type: "string"
+        description: "接入时间，未接入为空"
+      serviceList:
+        type: "array"
+        items:
+          $ref: '#/definitions/appService'
+
+  checkAppApiRequest:
+    type: "object"
+    properties:
+      privateApps:
+        type: "array"
+        items:
+          $ref: '#/definitions/privateAppCheck'
+
+  privateAppCheck:
+    type: "object"
+    properties:
+      appId:
+        type: "string"
+        description: "应用id"
+      version:
+        type: "string"
+        description: "应用版本"
+
+  checkAppApiResponse:
+    type: "object"
+    properties:
+      code:
+        type: "string"
+        description: "操作状态码（0：成功，999：失败）"
+      message:
+        type: "string"
+        description: "请求成功相关信息"
+      datas:
+        type: "object"
+        description: "api检查结果"
+        items:
+          $ref: '#/definitions/checkApiResult'
+
+  checkApiResult:
+    type: "object"
+    properties:
+      checkFlag:
+        type: "integer"
+        description: "检查结果(0：不通过；1：已通过)"
+      missAppList:
+        type: "array"
+        items:
+          $ref: '#/definitions/appCheckInfo'
+
+  appCheckInfo:
+    type: "object"
+    properties:
+      appId:
+        type: "string"
+        description: "应用id"
+      appName:
+        type: "string"
+        description: "应用名称"
+      missApiList:
+        type: "array"
+        items:
+          $ref: '#/definitions/apiCheck'
+
+  apiCheck:
+    type: "object"
+    properties:
+      apiId:
+        type: "string"
+        description: "apiid"
+      apiName:
+        type: "string"
+        description: "api名称"
+      apiUrl:
+        type: "string"
+        description: "api地址"
+
+  setAppPurchaseRequest:
+    type: "object"
+    properties:
+      schoolCode:
+        type: "string"
+        description: "学校代码"
+      superappId:
+        type: "string"
+        description: "应用id"
+
+  schoolPushedAppRequest:
+    type: "object"
+    properties:
+      schoolCodes:
+        type: "array"
+        description: "要查询的学校代码列表"
+        items:
+          type: "string"
+
+  schoolPushedAppResponse:
+    type: "object"
+    properties:
+      code:
+        type: "string"
+        description: "操作状态码（0：成功，999：失败）"
+      message:
+        type: "string"
+        description: "请求成功相关信息"
+      datas:
+        type: "array"
+        items:
+          $ref: "#/definitions/superAppInfo"
+
+  superAppInfo:
+    type: "object"
+    properties:
+      schoolCode:
+        type: "string"
+        description: "学校代码"
+      schoolToken:
+        type: "string"
+        description: "用于取私有云应用包接口的token"
+      superappId:
+        type: "string"
+        description: "应用id"
+      superappName:
+        type: "string"
+        description: "应用名称"
+      secondName:
+        type: "string"
+        description: "应用英文名称"
+      logoUrl:
+        type: "string"
+        description: "应用图标地址"
+      appType:
+        type: "integer"
+        description: "（1：私有云应用；2：公有云应用）"
+      calssName:
+        type: "string"
+        description: "应用分类名称"
+      vendorName:
+        type: "string"
+        description: "生产厂商名称"
+      appVersion:
+        type: "string"
+        description: "版本号"
+      appDesc:
+        type: "string"
+        description: "应用描述"
+      appSecret:
+        type: "string"
+        description: "appSecret"
+      token:
+        type: "string"
+        description: "token"
+      encodingAesKey:
+        type: "string"
+        description: "encodingAesKey"
+      apis:
+        type: "array"
+        description: "应用使用的api列表"
+        items:
+          $ref: "#/definitions/apiInfo"
+      services:
+        type: "array"
+        description: "应用下属服务列表"
+        items:
+          $ref: "#/definitions/service"
+      privileges:
+        type: "object"
+        description: "权限信息"
+        items:
+          $ref: "#/definitions/privilege"
+  
+  privilege:
+    type: "object"
+    properties:
+      callbackInfo:
+        type: "object"
+        description: "回调设置"
+        items:
+          $ref: "#/definitions/callbackInfo"
+      dictDataRoleInfo:
+        type: "array"
+        description: "字典数据权限"
+        items:
+          $ref: "#/definitions/dictDataRoleInfo"
+      tableDataRoleInfo:
+        type: "array"
+        description: "数据表权限"
+        items:
+          $ref: "#/definitions/tableDataRoleInfo"
+
+  tableDataRoleInfo:
+    type: "object"
+    properties:
+      tableWid:
+        type: "string"
+        description: "字典表的WID"
+      tableName:
+        type: "string"
+        description: "字典表的名称"
+      privilege:
+        type: "string"
+        description: "当前已经选择的表权限，使用逗号分隔"
+      fieldPrivilege:
+        type: "array"
+        description: "选择的属性权限"
+        items:
+          $ref: "#/definitions/fieldRoleInfo"
+
+  fieldRoleInfo:
+    type: "object"
+    properties:
+      tableWid:
+        type: "string"
+        description: "字典表的WID"
+      fieldWid:
+        type: "string"
+        description: "属性的WID"
+      fieldName:
+        type: "string"
+        description: "属性的名称"
+      privilege:
+        type: "string"
+        description: "当前已经选择的属性的权限，使用逗号分隔"
+      
+
+  dictDataRoleInfo:
+    type: "object"
+    properties:
+      tableWid:
+        type: "string"
+        description: "字典表的WID"
+      tableName:
+        type: "string"
+        description: "字典表的名称"
+      privilege:
+        type: "string"
+        description: "当前已经选择的表权限，使用逗号分隔"
+
+  callbackInfo:
+    type: "object"
+    properties:
+      callBackUrlOnline: 
+        type: "string"
+        description: "回调地址(正式)"
+      callBackUrlTest: 
+        type: "string"
+        description: "回调地址(测试)"
+      retryTimes:
+        type: "string"
+        description: "重试次数"
+      retryInterval:
+        type: "string"
+        description: "重试间隔/min"
+
+
+  apiInfo:
+    type: "object"
+    properties:
+      apiId:
+        type: "string"
+        description: "API的ID"
+      apiVersion:
+        type: "string"
+        description: "API的版本 0 V1版本，1 V2版本"
+      apiUrl:
+        type: "string"
+        description: "API的访问地址"
+
+  service:
+    type: "object"
+    properties:
+      serviceId:
+        type: "string"
+        description: "服务ID"
+      serviceName:
+        type: "string"
+        description: "服务名称"
+      secondServiceName:
+        type: "string"
+        description: "服务名称其他语言"
+      pcConfig:
+        type: "object"
+        description: "pc服务信息"
+        items:
+          $ref: "#/definitions/serviceConfig"
+      mobileConfig:
+        type: "object"
+        description: "移动服务信息"
+        items:
+          $ref: "#/definitions/serviceConfig"
+
+  serviceConfig:
+    type: "object"
+    properties:
+      logoUrl:
+        type: "string"
+        description: "服务图标地址"
+      serviceUrl:
+        type: "string"
+        description: "服务访问地址"
+      mobileType:
+        type: "string"
+        description: "移动服务类别（1：h5；2：hybrid）"
+      hybridPackageUrl:
+        type: "string"
+        description: "hybrid服务包地址"
+
+  baseBeanResponse:
+    type: "object"
+    properties:
+      status:
+        type: "string"
+        description: "应用响应状态"
+      msg:
+        type: "string"
+        description: "返回码描述"
+      data:
+        $ref: "#/definitions/baseBean"
+
+  baseBean:
+    type: "object"
+    properties:
+      timestamp:
+        type: "string"
+        description: "时间戳"
+      nonce:
+        type: "string"
+        description: "随机数"
+      echostr:
+        type: "string"
+        description: "AES加密后的字符串。需要解密后得到数据结构体postData，其中postData为json字符串格式"
+      sign:
+        type: "string"
+        description: "加密签名，md5（token+timestamp+nonce+echostr），其中 md5 值 为长度为 32 位的小写字符串"
+      school:
+        type: "string"
+        description: "租户信息"
+      schoolType:
+        type: "string"
+        description: "1 表示 school是租户代码 2 表示 school是租户id"
